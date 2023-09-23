@@ -8,7 +8,7 @@ export const userSlice = createSlice({
     reducers: {
         login: (state, action) => {
             state.user = action.payload;
-            localStorage.setItem('user', state.user);
+            localStorage.setItem('user', state.user.name);
         },
         logout: (state) => {
             state.user = null;
