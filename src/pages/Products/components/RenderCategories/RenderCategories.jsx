@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, forwardRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductCategories } from '../../../../store/productCategoriesSlice.js'
 
-export default function RenderCategories({ handleCategoryChange }) {
+export default forwardRef(function RenderCategories({ handleCategoryChange }, ref) {
     const dispatch = useDispatch();
     const category = useSelector(state => state.category);
 
@@ -19,7 +19,7 @@ export default function RenderCategories({ handleCategoryChange }) {
             {category.loading && <div>Loading...</div>}
             {!category.loading && category.error ? <div>Error: { category.error }</div> : null}
             {!category.loading && category.categories.length ? (
-                <select onChange={ handleCategory } defaultValue="all">
+                <select ref={ ref } onChange={ handleCategory } defaultValue="all">
                     <option value="all">All</option>
                     {category.categories.map((category, index) => 
                         <option key={ index } value={ category.category }>{ category.displayName }</option>
@@ -29,4 +29,4 @@ export default function RenderCategories({ handleCategoryChange }) {
     
         </>
     )
-}
+})

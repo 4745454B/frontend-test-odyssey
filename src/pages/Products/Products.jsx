@@ -15,6 +15,8 @@ export default function Products() {
     const [sortBy, setSortBy] = useState('high-low');
 
     const priceRangeRef = useRef();
+    const sortByRef = useRef();
+    const categoriesRef = useRef();
 
     const product = useSelector(state => state.product);
 
@@ -33,7 +35,22 @@ export default function Products() {
 
     const handleMaxPriceChange = debounce((e) => {
         setPriceMax(+e.target.value);
+        setPage(1);
     }, 300);
+
+    const handleSortChange = (e) => {
+        setSortBy(e.target.value);
+    }
+
+    const handleClearAllFilters = () => {
+        setPage(1);
+        setCategory('all');
+        setPriceMax(1000);
+        setSortBy('high-low');
+        priceRangeRef.current.value = 1000;
+        sortByRef.current.value = 'high-low';
+        categoriesRef.current.value = 'all';
+    }
 
     return (
         <>
@@ -42,6 +59,7 @@ export default function Products() {
             <a href="/home">Home</a>
             
             <RenderCategories 
+                ref={ categoriesRef }
                 handleCategoryChange={ handleCategoryChange }
             />
 
@@ -55,6 +73,15 @@ export default function Products() {
                 step={ 10 }
             />
             <label htmlFor="price_range">${ priceMax }</label>
+
+            <select ref={ sortByRef } defaultValue={ sortBy } onChange={ handleSortChange }>
+                <option value="high-low">Descending</option>
+                <option value="low-high">Ascending</option>
+                <option value="a-z">a-z</option>
+                <option value="z-a">z-a</option>
+            </select>
+
+            <button onClick={ handleClearAllFilters }>Clear All Filters</button>
 
             <RenderProducts 
                 priceMax={ priceMax } 
