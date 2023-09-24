@@ -31,7 +31,17 @@ export default function Products() {
             {product.loading && <div>Loading...</div>}
             {!product.loading && product.error ? <div>Error: { product.error }</div> : null}
             {!product.loading && product.products.length ? (
-                product.products.map((product, index) => <Product key={ `${product.name}_${index}` } image={product.image} />)
+                <div className={ classes.image_grid } >
+                    {product.products.map((product, index) => 
+                    <Product 
+                        key={ `${product.name}_${index}` } 
+                        name={ product.name ? product.name : null }
+                        image={ product.image ? product.image : null }
+                        category={ product.category ? product.category : null }
+                        price={ product.price ? product.price : null }
+                        description={ product.description ? product.description : null }
+                    />)}
+                </div>
             ) : null}
         </>
     )
