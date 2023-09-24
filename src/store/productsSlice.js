@@ -1,9 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const PRODUCTS_URL = 'http://localhost/frontend-test-odyssey-api/?endpoint=products';
-
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
-    const response = await fetch(PRODUCTS_URL);
+    const response = await fetch(process.env.REACT_APP_PRODUCTS_API);
     const responseJson = await response.json();
     return responseJson.products;
 });

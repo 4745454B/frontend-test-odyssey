@@ -1,9 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const CATEGORIES_URL = 'http://localhost/frontend-test-odyssey-api/?endpoint=categories';
-
 export const fetchProductCategories = createAsyncThunk('productCategories/fetchProductCategories', async () => {
-    const response = await fetch(CATEGORIES_URL);
+    const response = await fetch(process.env.REACT_APP_PRODUCT_CATEGORIES_API);
     const responseJson = await response.json();
     return responseJson.categories;
 });

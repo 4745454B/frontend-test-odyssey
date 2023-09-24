@@ -25,13 +25,13 @@ export default function Products() {
             {category.loading && <div>Loading...</div>}
             {!category.loading && category.error ? <div>Error: { category.error }</div> : null}
             {!category.loading && category.categories.length ? (
-                category.categories.map(category => <div>{ category }</div>)
+                category.categories.map((category, index) => <div key={ index }>{ category }</div>)
             ) : null}
 
             {product.loading && <div>Loading...</div>}
             {!product.loading && product.error ? <div>Error: { product.error }</div> : null}
             {!product.loading && product.products.length ? (
-                product.products.map(product => <Product image={product.image} />)
+                product.products.map((product, index) => <Product key={ `${product.name}_${index}` } image={product.image} />)
             ) : null}
         </>
     )
