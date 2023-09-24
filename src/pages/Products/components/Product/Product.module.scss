@@ -1,10 +1,44 @@
+$infoColor: rgb(55, 55, 55);
+$overlayColor: rgba(0, 0, 0, 0.5);
+
+@mixin name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+@mixin button {
+    width: 125px;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    padding: .5rem 0;
+    background-color: $infoColor;
+    cursor: pointer;
+    transition: background-color .75s, color .75s;
+    will-change: background-color, color;
+}
+
 .product_container{
     width: 300px;
+    box-shadow: -1px 1px 5px $overlayColor;
+    border-radius: 5px;
 
-    &__image_box{
+    .image_box{
         position: relative;
         width: 100%;
         height: 300px;
+        overflow: hidden;
+
+        &:hover{
+            .hidden_content{
+                top: 50%;
+            }
+        }
         
         img{
             position: absolute;
@@ -12,15 +46,59 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .hidden_content {
+            position: absolute;
+            color: #fff;
+            width: 100%;
+            height: 100%;
+            background-color: $overlayColor;
+            top: -50%;
+            transform: translate(0, -50%);
+            transition: top .75s;
+            will-change: top;
+
+            .name{
+                @include name;
+            }
+            
+            .product_description{
+                display: flex;
+                flex-direction: column;
+                width: 90%;
+                margin: 0 auto;
+                user-select: none;
+                overflow: hidden;
+            }
         }
     }
     
-    &__product_info{
-        &__name{
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            font-weight: bold;
+    .product_info{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem 1rem;
+        color: #fff;
+        background-color: $infoColor;
+        border-radius: 0 0 5px 5px;
+
+        h4, p{
+            margin: 0;
+            padding: 0;
+        }
+
+        .name{
+            @include name;
+        }
+
+        button{
+            @include button;
+            &:hover{
+                background-color: #fff;
+                color: #000;
+            }
         }
     }
 }

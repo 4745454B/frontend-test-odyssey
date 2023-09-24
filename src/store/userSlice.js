@@ -9,7 +9,7 @@ export const userSlice = createSlice({
     reducers: {
         login: (state, action) => {
             
-            if(process.env.REACT_APP_USERNAME == action.payload.name && process.env.REACT_APP_PASSWORD == action.payload.password) {
+            if(process.env.REACT_APP_USERNAME === action.payload.name && process.env.REACT_APP_PASSWORD === action.payload.password) {
                 state.user = action.payload;
                 state.error = null;
                 localStorage.setItem('user', state.user.name);

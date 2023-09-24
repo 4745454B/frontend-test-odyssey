@@ -1,15 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-// sorting by
-// a-z
-// z-a
-// low-high
-// high-low
-
-// filter by
-// category
-// price_max
-
 const filterProducts = (products, { category, price_max, sortBy }) => {
     let filteredProducts = [...products];
     
@@ -17,7 +7,7 @@ const filterProducts = (products, { category, price_max, sortBy }) => {
         filteredProducts = filteredProducts.filter((product) => product.category === category);
     }
 
-    if (price_max != null) {
+    if (price_max !== null) {
         filteredProducts = filteredProducts.filter((product) => {
             return product.price <= price_max;
         });
