@@ -17,7 +17,7 @@ const filterProducts = (products, { category, price_max, sortBy }) => {
         filteredProducts = filteredProducts.filter((product) => product.category === category);
     }
 
-    if (price_max) {
+    if (price_max != null) {
         filteredProducts = filteredProducts.filter((product) => {
             return product.price <= price_max;
         });
