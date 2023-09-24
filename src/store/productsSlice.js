@@ -1,9 +1,56 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
+// sorting by
+// a-z
+// z-a
+// low-high
+// high-low
+
+// filter by
+// category
+// price_max
+
+const filterProducts = (products, { category, price_max, sortBy }) => {
+    let filteredProducts = [...products];
+    
+    if (category) {
+        filteredProducts = filteredProducts.filter((product) => product.category === category);
+    }
+
+    if (price_max) {
+        filteredProducts = filteredProducts.filter((product) => {
+            return product.price <= price_max;
+        });
+    }
+
+    const sortProducts = (a, b) => {
+        if (sortBy === 'a-z') {
+            return a.name.localeCompare(b.name);
+        } else if (sortBy === 'z-a') {
+            return b.name.localeCompare(a.name);
+        } else if (sortBy === 'low-high') {
+            return a.price - b.price;
+        } else if (sortBy === 'high-low') {
+            return b.price - a.price;
+        }
+        else {
+            return 0;
+        }
+    };
+
+    filteredProducts = filteredProducts.sort(sortProducts);
+
+    return filteredProducts;
+}
+
+
+export const fetchProducts = createAsyncThunk('products/fetchProducts', async ({ page, itemsPerPage, category, price_max, sortBy }) => {
     const response = await fetch(process.env.REACT_APP_PRODUCTS_API);
     const responseJson = await response.json();
-    return responseJson.products;
+    
+    const filteredProducts = filterProducts(responseJson.products, { category, price_max, sortBy });
+
+    return filteredProducts.slice((page - 1) * itemsPerPage, page * itemsPerPage);
 });
 
 const productsSlice = createSlice({
@@ -11,6 +58,9 @@ const productsSlice = createSlice({
     initialState: {
         loading: false,
         products: [],
+        currentPage: 1,
+        productsPerPage: 12,
+        displayedProducts: [],
         error: ''
     },
     extraReducers: (builder) => {

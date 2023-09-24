@@ -1,20 +1,31 @@
 import classes from './Products.module.scss'
 import Header from "../../components/common/Header/Header.jsx";
 import Product from './components/Product/Product.jsx'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../../store/productsSlice.js';
 import { fetchProductCategories } from '../../store/productCategoriesSlice.js';
 
 export default function Products() {
+    const [page, setPage] = useState(1);
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [priceMax, setPriceMax] = useState(null);
+    const [sortBy, setSortBy] = useState(null);
+
     const dispatch = useDispatch();
     const product = useSelector(state => state.product);
     const category = useSelector(state => state.category);
 
     useEffect(() => {
-        dispatch(fetchProducts());
+        dispatch(fetchProducts({
+            page: page ?? 1,
+            itemsPerPage: 12,
+            category: selectedCategory ?? null,
+            price_max: priceMax ?? null,
+            sortBy: sortBy ?? null
+        }));
         dispatch(fetchProductCategories());
-    }, []);
+    }, [page]);
 
     return (
         <>
@@ -25,7 +36,7 @@ export default function Products() {
             {category.loading && <div>Loading...</div>}
             {!category.loading && category.error ? <div>Error: { category.error }</div> : null}
             {!category.loading && category.categories.length ? (
-                category.categories.map((category, index) => <div key={ index }>{ category }</div>)
+                category.categories.map((category, index) => <div key={ index }>{ category.displayName }</div>)
             ) : null}
 
             {product.loading && <div>Loading...</div>}
