@@ -44,13 +44,11 @@ const filterProducts = (products, { category, price_max, sortBy }) => {
 }
 
 
-export const fetchProducts = createAsyncThunk('products/fetchProducts', async ({ page, itemsPerPage, category, price_max, sortBy }) => {
+export const fetchProducts = createAsyncThunk('products/fetchProducts', async ({ category, price_max, sortBy }) => {
     const response = await fetch(process.env.REACT_APP_PRODUCTS_API);
     const responseJson = await response.json();
-    
-    const filteredProducts = filterProducts(responseJson.products, { category, price_max, sortBy });
 
-    return filteredProducts.slice((page - 1) * itemsPerPage, page * itemsPerPage);
+    return filterProducts(responseJson.products, { category, price_max, sortBy });
 });
 
 const productsSlice = createSlice({
@@ -60,7 +58,6 @@ const productsSlice = createSlice({
         products: [],
         currentPage: 1,
         productsPerPage: 12,
-        displayedProducts: [],
         error: ''
     },
     extraReducers: (builder) => {
