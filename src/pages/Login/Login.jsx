@@ -5,15 +5,23 @@ import { login } from '../../store/userSlice.js';
 import { useState } from 'react';
 
 export default function Login() {
-    const [name, setName] = useState("Admin");
-    const [password, setPassword] = useState("123456");
+    const [username, setUsername] = useState();
+    const [password, setPassword] = useState();
 
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
 
+    const handleUsernameInput = (e) => {
+        setUsername(e.target.value);
+    }
+
+    const handlePasswordInput = (e) => {
+        setPassword(e.target.value);
+    }
+
     const handleLogin = () => {
         dispatch(login({
-            name: name, 
+            name: username, 
             password: password,
             loggedIn: true
         }));
@@ -22,6 +30,8 @@ export default function Login() {
     return (
         <>
             <Header />
+            <input onChange={ handleUsernameInput } type="text" placeholder="Username" />
+            <input onChange={ handlePasswordInput } type="password" placeholder="Password" />
             <button onClick={ handleLogin }>Login</button>
             {user.error ? <div>{ user.error }</div> : null}
         </>
