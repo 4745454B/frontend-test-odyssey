@@ -62,7 +62,7 @@ export default function Pagination({ itemsPerPage, totalItems, currentPage, setP
         {pageNumbers.map((number, index) => (
           <li key={index}>
             <button
-              onClick={(e) => { e.preventDefault(); handleSetPage(number); }}
+              onClick={() => { handleSetPage(number); }}
               className={number == currentPage ? classes.active : null }
             >
               {number}
