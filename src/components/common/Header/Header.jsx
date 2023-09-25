@@ -18,10 +18,12 @@ export default function Header(){
         <>
             <header>
                 <div className={ classes.header_view_container }>
-                    <img draggable={ false } className={ classes.logo } src="./images/react-logo.png" alt="React Logo" />
+                    <a href="/home">
+                        <img draggable={ false } className={ classes.logo } src="./images/react-logo.png" alt="React Logo" />
+                    </a>
                     <HeaderView />
                 </div>
-                {user ? <a onClick={ handleLogout }>Logout</a> : <a href="/home">Login</a> }
+                {user ? <a className={ classes.logout } onClick={ handleLogout }>Logout</a> : <a className={ classes.logout } href="/home">Login</a> }
             </header>
         </>
     );

@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import RenderCategories from './components/RenderCategories/RenderCategories.jsx';
 import RenderProducts from './components/RenderProducts/RenderProducts.jsx';
 import debounce from 'lodash/debounce.js'
+import NavigationSidebar from '../../components/common/NavigationSidebar/NavigationSidebar.jsx';
 
 export default function Products() {
     const [page, setPage] = useState(1);
@@ -53,50 +54,48 @@ export default function Products() {
     }
 
     return (
-        <>
-            <Header />
-            Products
-            <a href="/home">Home</a>
-            
-            <RenderCategories 
-                ref={ categoriesRef }
-                handleCategoryChange={ handleCategoryChange }
-            />
+        <>    
+            <main>
+                <RenderCategories 
+                    ref={ categoriesRef }
+                    handleCategoryChange={ handleCategoryChange }
+                />
 
-            <input 
-                id="price_range" 
-                ref={ priceRangeRef }
-                onChange={ handleMaxPriceChange } 
-                type="range" 
-                min={ 0 } 
-                max={ 1000 } 
-                step={ 10 }
-            />
-            <label htmlFor="price_range">${ priceMax }</label>
+                <input 
+                    id="price_range" 
+                    ref={ priceRangeRef }
+                    onChange={ handleMaxPriceChange } 
+                    type="range" 
+                    min={ 0 } 
+                    max={ 1000 } 
+                    step={ 10 }
+                />
+                <label htmlFor="price_range">${ priceMax }</label>
 
-            <select ref={ sortByRef } defaultValue={ sortBy } onChange={ handleSortChange }>
-                <option value="high-low">Descending</option>
-                <option value="low-high">Ascending</option>
-                <option value="a-z">a-z</option>
-                <option value="z-a">z-a</option>
-            </select>
+                <select ref={ sortByRef } defaultValue={ sortBy } onChange={ handleSortChange }>
+                    <option value="high-low">Descending</option>
+                    <option value="low-high">Ascending</option>
+                    <option value="a-z">a-z</option>
+                    <option value="z-a">z-a</option>
+                </select>
 
-            <button onClick={ handleClearAllFilters }>Clear All Filters</button>
+                <button onClick={ handleClearAllFilters }>Clear All Filters</button>
 
-            <RenderProducts 
-                priceMax={ priceMax } 
-                selectedCategory={ category } 
-                sortBy={ sortBy } 
-                page={ page }
-                itemsPerPage={ itemsPerPage }
-            />
+                <RenderProducts 
+                    priceMax={ priceMax } 
+                    selectedCategory={ category } 
+                    sortBy={ sortBy } 
+                    page={ page }
+                    itemsPerPage={ itemsPerPage }
+                />
 
-            <Pagination 
-                itemsPerPage={ itemsPerPage } 
-                totalItems={ product.products.length } 
-                currentPage={ page } 
-                setPage={ handlePageChange } 
-            />
+                <Pagination 
+                    itemsPerPage={ itemsPerPage } 
+                    totalItems={ product.products.length } 
+                    currentPage={ page } 
+                    setPage={ handlePageChange } 
+                />
+            </main>
         </>
     )
 }

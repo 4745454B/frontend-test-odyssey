@@ -1,4 +1,4 @@
-import './assets/styles/App.module.scss'
+import classes from './assets/styles/App.module.scss'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 /**
@@ -11,6 +11,8 @@ import NoPage from './pages/NoPage/NoPage.jsx';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx';
 import { useSelector } from 'react-redux';
 import { selectUser } from './store/userSlice.js';
+import Header from './components/common/Header/Header.jsx';
+import NavigationSidebar from './components/common/NavigationSidebar/NavigationSidebar.jsx';
 
 export default function App() {
   const user = useSelector(selectUser);
@@ -23,14 +25,38 @@ export default function App() {
           path="/login" 
           element={ user ? <Navigate to="/home" /> : <Login /> } 
         /> 
-        <Route path="*" element={ <NoPage /> } />
+
+        <Route 
+          path="*" 
+          element={ 
+            user ? (
+              <>
+                <Header />
+                <div className={ classes.sidebar_container }>
+                  <NavigationSidebar /> 
+                  <NoPage />
+                </div>
+              </>
+            )
+            : (
+              <>
+                <Header />
+                <NoPage />
+              </>
+            )
+          } 
+        />
         
         {/* Private Routes */}
         <Route 
           index
           element={ 
             <PrivateRoute>
-              <Home />
+              <Header />
+                <div className={ classes.sidebar_container }>
+                  <NavigationSidebar />
+                  <Home />
+                </div>
             </PrivateRoute>
           } 
         />
@@ -39,7 +65,11 @@ export default function App() {
           path="/home" 
           element={ 
             <PrivateRoute>
-              <Home />
+              <Header />
+                <div className={ classes.sidebar_container }>
+                  <NavigationSidebar />
+                  <Home />
+                </div>
             </PrivateRoute>
           } 
         />
@@ -48,7 +78,13 @@ export default function App() {
           path="/products" 
           element={ 
             <PrivateRoute>
-              <Products />
+              <>
+                <Header />
+                <div className={ classes.sidebar_container }>
+                  <NavigationSidebar />
+                  <Products />
+                </div>
+              </>
             </PrivateRoute> 
           } 
         />

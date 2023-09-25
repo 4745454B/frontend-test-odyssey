@@ -38,6 +38,13 @@ header{
         .logo{
             animation: spin 10s infinite linear;
             width: 50px;
+            transition: filter .5s;
+            will-change: filter;
+
+            &:hover{
+                filter: drop-shadow(0px 0px 7px #61DAFB);
+                -webkit-filter: drop-shadow(0px 0px 7px #61DAFB);
+            }
     
             @keyframes spin{
                 0%{
@@ -50,7 +57,7 @@ header{
         }
     }
 
-    a, a:visited, a:active{
+    a.logout, a.logout:visited, a.logout:active{
         @include button;
         text-decoration: none;
     }

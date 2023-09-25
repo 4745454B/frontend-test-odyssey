@@ -1,5 +1,4 @@
 import classes from './Login.module.scss'
-import Header from "../../components/common/Header/Header.jsx";
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../store/userSlice.js';
 import { useState } from 'react';
@@ -29,7 +28,6 @@ export default function Login() {
 
     return (
         <>
-            <Header />
             <input onChange={ handleUsernameInput } type="text" placeholder="Username" />
             <input onChange={ handlePasswordInput } type="password" placeholder="Password" />
             <button onClick={ handleLogin }>Login</button>
