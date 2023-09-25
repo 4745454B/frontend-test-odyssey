@@ -21,6 +21,11 @@ $overlayColor: rgba(0, 0, 0, 0.5);
     cursor: pointer;
     transition: background-color .75s, color .75s;
     will-change: background-color, color;
+
+    &:hover{
+        background-color: #fff;
+        color: #000;
+    }
 }
 
 .product_container{
@@ -95,10 +100,6 @@ $overlayColor: rgba(0, 0, 0, 0.5);
 
         button{
             @include button;
-            &:hover{
-                background-color: #fff;
-                color: #000;
-            }
         }
     }
 }

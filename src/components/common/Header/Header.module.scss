@@ -1,0 +1,57 @@
+$headerColor: rgb(55, 55, 55);
+
+@mixin button {
+    display: block;
+    text-align: center;
+    width: 100px;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    padding: .25rem 0;
+    background-color: $headerColor;
+    cursor: pointer;
+    transition: background-color .75s, color .75s;
+    will-change: background-color, color;
+
+    &:hover{
+        background-color: #fff;
+        color: #000;
+    }
+}
+
+header{
+    width: 100%;
+    padding: 2rem;
+    background-color: $headerColor;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+
+    .header_view_container{
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+
+        .logo{
+            animation: spin 10s infinite linear;
+            width: 50px;
+    
+            @keyframes spin{
+                0%{
+                    transform: rotateZ(0deg);
+                }
+                100%{
+                    transform: rotateZ(-360deg);
+                }
+            }
+        }
+    }
+
+    a, a:visited, a:active{
+        @include button;
+        text-decoration: none;
+    }
+}
