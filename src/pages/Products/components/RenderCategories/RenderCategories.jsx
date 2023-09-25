@@ -19,7 +19,7 @@ export default forwardRef(function RenderCategories({ handleCategoryChange }, re
             {category.loading && <div>Loading...</div>}
             {!category.loading && category.error ? <div>Error: { category.error }</div> : null}
             {!category.loading && category.categories.length ? (
-                <select ref={ ref } onChange={ handleCategory } defaultValue="all">
+                <select title="Category" ref={ ref } onChange={ handleCategory } defaultValue="all">
                     <option value="all">All</option>
                     {category.categories.map((category, index) => 
                         <option key={ index } value={ category.category }>{ category.displayName }</option>

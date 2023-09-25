@@ -56,30 +56,36 @@ export default function Products() {
     return (
         <>    
             <main>
-                <RenderCategories 
-                    ref={ categoriesRef }
-                    handleCategoryChange={ handleCategoryChange }
-                />
 
-                <input 
-                    id="price_range" 
-                    ref={ priceRangeRef }
-                    onChange={ handleMaxPriceChange } 
-                    type="range" 
-                    min={ 0 } 
-                    max={ 1000 } 
-                    step={ 10 }
-                />
-                <label htmlFor="price_range">${ priceMax }</label>
+                <div className={ classes.filters }>
+                    <RenderCategories 
+                        ref={ categoriesRef }
+                        handleCategoryChange={ handleCategoryChange }
+                    />
 
-                <select ref={ sortByRef } defaultValue={ sortBy } onChange={ handleSortChange }>
-                    <option value="high-low">Descending</option>
-                    <option value="low-high">Ascending</option>
-                    <option value="a-z">a-z</option>
-                    <option value="z-a">z-a</option>
-                </select>
+                    <span className={ classes.price_range }>
+                        <input 
+                            title="Set Max Price"
+                            id="price_range" 
+                            ref={ priceRangeRef }
+                            onChange={ handleMaxPriceChange } 
+                            type="range" 
+                            min={ 0 } 
+                            max={ 1000 } 
+                            step={ 10 }
+                        />
+                        <label htmlFor="price_range">${ priceMax }</label>
+                    </span>
 
-                <button onClick={ handleClearAllFilters }>Clear All Filters</button>
+                    <select title="Sort By" ref={ sortByRef } defaultValue={ sortBy } onChange={ handleSortChange }>
+                        <option value="high-low">Descending</option>
+                        <option value="low-high">Ascending</option>
+                        <option value="a-z">a-z</option>
+                        <option value="z-a">z-a</option>
+                    </select>
+
+                    <button className={ classes.clear_filters_button } onClick={ handleClearAllFilters }>Clear All Filters</button>
+                </div>
 
                 <RenderProducts 
                     priceMax={ priceMax } 
