@@ -1,8 +1,7 @@
 import classes from './Login.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../store/userSlice.js';
-import { useState, useRef } from 'react';
-import bcrypt from 'bcryptjs'
+import { useRef } from 'react';
 
 export default function Login() {
     const username = useRef();
