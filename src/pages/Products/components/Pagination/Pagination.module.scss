@@ -2,6 +2,8 @@ $paginationButtonColor: #fff;
 $activePaginationButtonColor: #000;
 
 nav {
+    margin: 4rem 0 2rem 0;
+    
     ul {
         display: flex;
         flex-direction: row;
@@ -10,6 +12,7 @@ nav {
         list-style: none;
         gap: 1rem;
         padding: 0;
+        margin: 0;
 
         li {
             button {
