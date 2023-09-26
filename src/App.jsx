@@ -23,7 +23,14 @@ export default function App() {
         {/* Public Routes */}
         <Route 
           path="/login" 
-          element={ user ? <Navigate to="/home" /> : <Login /> } 
+          element={ 
+            user ? <Navigate to="/home" /> : (
+              <>
+                <Header />
+                <Login />
+              </>
+            ) 
+          } 
         /> 
 
         <Route 

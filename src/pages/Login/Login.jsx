@@ -27,11 +27,12 @@ export default function Login() {
     }
 
     return (
-        <>
+        <form onSubmit={ (e) => e.preventDefault() } className={ classes.login_form }>
+            <h1>Login</h1>
             <input onChange={ handleUsernameInput } type="text" placeholder="Username" />
             <input onChange={ handlePasswordInput } type="password" placeholder="Password" />
             <button onClick={ handleLogin }>Login</button>
-            {user.error ? <div>{ user.error }</div> : null}
-        </>
+            {user.error ? <div className={ classes.error }>{ user.error }</div> : null}
+        </form>
     )
 }

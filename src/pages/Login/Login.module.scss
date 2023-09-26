@@ -1,0 +1,65 @@
+$overlayColor: rgba(0, 0, 0, 0.5);
+
+@mixin button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #000;
+    border-radius: 15px;
+    padding: .5rem .5rem;
+    font-weight: bold;
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color .5s, color .5s;
+    will-change: background-color, color;
+
+    &:hover{
+        background-color: rgb(55, 55, 55);
+        color: #fff;
+    }
+}
+
+.login_form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 3rem;
+    box-shadow: -1px 1px 5px $overlayColor;
+    border-radius: 5px;
+    width: fit-content;
+    padding: 4rem 3rem;
+    margin: 18rem auto 0 auto;
+
+    h1{
+        margin: 0;
+    }
+
+    input {
+        border: 2px solid #000;
+        border-radius: 25px;
+        padding: 1rem 2rem;
+        width: 250px;
+        transition: background-color .5s;
+
+        &:focus {
+            background-color: #000;
+            color: #fff;
+
+            &::placeholder{
+                color: #fff;
+            }
+        }
+    }
+    
+    button {
+        @include button;
+        width: 100px;
+    }
+
+    .error {
+        color: rgb(170, 38, 38);
+    }
+}
