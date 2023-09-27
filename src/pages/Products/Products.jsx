@@ -1,12 +1,10 @@
 import classes from './Products.module.scss'
-import Header from "../../components/common/Header/Header.jsx";
 import Pagination from './components/Pagination/Pagination.jsx';
 import { useEffect, useState, useRef } from "react";
 import { useSelector } from 'react-redux';
 import RenderCategories from './components/RenderCategories/RenderCategories.jsx';
 import RenderProducts from './components/RenderProducts/RenderProducts.jsx';
 import debounce from 'lodash/debounce.js'
-import NavigationSidebar from '../../components/common/NavigationSidebar/NavigationSidebar.jsx';
 
 export default function Products() {
     const [page, setPage] = useState(1);
