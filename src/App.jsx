@@ -9,13 +9,13 @@ import Home from './pages/Home/Home.jsx';
 import Products from './pages/Products/Products.jsx';
 import NoPage from './pages/NoPage/NoPage.jsx';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx';
-import { useSelector } from 'react-redux';
-import { selectUser } from './store/userSlice.js';
 import Header from './components/common/Header/Header.jsx';
 import NavigationSidebar from './components/common/NavigationSidebar/NavigationSidebar.jsx';
+import useAuth from './auth.js';
+import { useSelector } from 'react-redux';
 
 export default function App() {
-  const user = useSelector(selectUser);
+  const token = useSelector(state => state.user.token);
 
   return (
     <BrowserRouter>
@@ -24,7 +24,7 @@ export default function App() {
         <Route 
           path="/login" 
           element={ 
-            user ? <Navigate to="/home" /> : (
+            useAuth(token) ? <Navigate to="/home" /> : (
               <>
                 <Header />
                 <Login />
@@ -36,7 +36,7 @@ export default function App() {
         <Route 
           path="*" 
           element={ 
-            user ? (
+            useAuth(token) ? (
               <>
                 <Header />
                 <div className={ classes.sidebar_container }>
