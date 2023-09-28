@@ -36,20 +36,22 @@ nav {
                     border: none;
 
                     @media screen and (max-width: 450px) {
-                        button{
-                            width: 40px;
-                            height: 40px;
-                        }
+                        width: 34px;
+                        height: 34px;
+                        font-size: 1.1rem;
                     }
                 }
 
                 @media screen and (max-width: 450px) {
-                    button{
-                        width: 30px;
-                        height: 30px;
-                    }
+                    width: 28px;
+                    height: 28px;
+                    font-size: 1.1rem;
                 }
             }
+        }
+
+        @media screen and (max-width: 450px) {
+            gap: .8rem;
         }
     }
 }

@@ -18,6 +18,7 @@ export default function Welcome(){
                     floatIntensity={ 1 }
                     speed={ 2 }
                     rotationIntensity={ 0 }
+                    scale={ 0.9 }
                 >
                     <Center
                         position={[0, 0, 0]}
