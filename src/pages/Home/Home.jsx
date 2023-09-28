@@ -2,6 +2,11 @@ import './Home.module.scss'
 import { Canvas } from '@react-three/fiber'
 import Welcome from './components/Welcome/Welcome.jsx'
 
+/**
+ * The Home / Welcome page
+ * I decided to use React Three Fiber to create a 3D scene
+ */
+
 export default function Home() {
     return (
         <Canvas

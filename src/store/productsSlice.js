@@ -1,5 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+/**
+ * Handles the products state
+ * It has one action: fetchProducts
+ * I am fetching the products from the API
+ * I am filtering and sorting the products based on the category, price_max and sortBy
+ * I am using the createAsyncThunk from Redux Toolkit to handle the async request
+ */
+
 const filterProducts = (products, { category, price_max, sortBy }) => {
     if(!products) return [];
     

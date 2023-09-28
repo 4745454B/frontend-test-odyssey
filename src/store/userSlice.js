@@ -2,6 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 import bcrypt from 'bcryptjs';
 import CryptoJS from "crypto-js";
 
+/**
+ * Handles the user state
+ * It has two actions: login and logout
+ * For the Login:
+ * I am using bcrypt to compare the encrypted password with the one stored in the .env file
+ * I am using CryptoJS to encrypt the token and store it in the local storage
+ * For the logout:
+ * I am removing the user and token from the local storage and set the state to null
+ */
+
 export const userSlice = createSlice({
     name: "user",
     initialState: {

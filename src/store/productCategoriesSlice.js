@@ -1,5 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+/**
+ * Handles the product categories state
+ * It has one action: fetchProductCategories
+ * I am fetching the product categories from the API
+ * I am using the createAsyncThunk from Redux Toolkit to handle the async request
+ */
+
 export const fetchProductCategories = createAsyncThunk('productCategories/fetchProductCategories', async () => {
     const response = await fetch(process.env.REACT_APP_PRODUCT_CATEGORIES_API);
     const responseJson = await response.json();

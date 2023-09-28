@@ -1,4 +1,4 @@
-import classes from './NavigationSidebar.module.scss'
+import './NavigationSidebar.module.scss'
 
 export default function NavigationSidebar() {
     return (
