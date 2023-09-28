@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const filterProducts = (products, { category, price_max, sortBy }) => {
+    if(!products) return [];
+    
     let filteredProducts = [...products];
     
     if (category !== 'all') {

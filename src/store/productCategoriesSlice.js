@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const fetchProductCategories = createAsyncThunk('productCategories/fetchProductCategories', async () => {
     const response = await fetch(process.env.REACT_APP_PRODUCT_CATEGORIES_API);
     const responseJson = await response.json();
-    return responseJson.categories;
+    return responseJson.categories || [];
 });
 
 const productCategoriesSlice = createSlice({

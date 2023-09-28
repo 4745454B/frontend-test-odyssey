@@ -23,9 +23,9 @@ export default function RenderProducts({ selectedCategory, priceMax, sortBy, pag
 
     return (
         <>
-            {product.loading && <div>Loading...</div>}
-            {!product.loading && product.error ? <div>Error: { product.error }</div> : null}
-            {!product.loading && product.products.length ? (
+            {product.loading && <div className={ classes.loading }>Loading...</div>}
+            {!product.loading && product.error ? <div className={ classes.error }>Error: { product.error }</div> : null}
+            {!product.loading && !product.error && product.products.length ? (
                 <div className={ classes.image_grid } >
                     {displayedProducts.map((product, index) =>
                     <Product 

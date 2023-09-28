@@ -1,6 +1,17 @@
+@mixin status {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.6rem;
+    margin-top: 2rem;
+}
+
 .image_grid{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 2rem;
+}
+
+.loading, .error{
+    @include status;
 }
