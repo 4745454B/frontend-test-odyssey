@@ -9,6 +9,7 @@ export default function HeaderView() {
     useEffect(() => {
         switch(location.pathname)
         {
+            case '/':
             case '/home':
                 setActivePage('Home');
             break;
